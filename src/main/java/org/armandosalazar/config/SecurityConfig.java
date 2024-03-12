@@ -13,12 +13,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((request) -> {
-                    request.requestMatchers("/v1/index2")
-                            .permitAll()
-                            .anyRequest()
-                            .authenticated();
-                })
+        http.authorizeHttpRequests((request) -> request.requestMatchers("/v1/index2")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll);
 
         return http.build();
